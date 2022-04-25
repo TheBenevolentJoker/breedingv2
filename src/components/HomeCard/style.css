@@ -1,0 +1,27 @@
+.homeCard {
+  display: flex;
+  flex-direction: column;
+  padding: 0.625rem; /* 10px */
+  background: rgba(0, 0, 0, 0.32);
+  border: 1px solid #000000;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  gap: 0.5rem; /* 8px */
+}
+
+.homeCard header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.homeCard header h2 {
+  flex: 1;
+  font-size: 2rem; /* 32px */
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  text-align: center;
+}
+
+.homeCard header .question {
+  padding-inline: 1.25rem;
+  font-family: 'Rufina';
+}

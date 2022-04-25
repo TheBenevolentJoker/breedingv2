@@ -1,0 +1,21 @@
+.pageContainer {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem; /* 16px */
+  overflow: auto;
+  background: rgba(0, 0, 0, 0.88);
+  padding: 1.5rem; /* 24px */
+}
+
+.pageContainer .title {
+  text-align: center;
+  font-size: 4.5rem; /* 72 px */
+}
+
+.pageContainer .image {
+  width: max-content;
+  position: relative;
+}

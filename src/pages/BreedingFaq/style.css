@@ -1,0 +1,43 @@
+.pageContainer {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem; /* 16px */
+  overflow: auto;
+  background: rgba(0, 0, 0, 0.88);
+  padding: 1.5rem; /* 24px */
+}
+
+.pageContainer .title {
+  text-align: center;
+  font-size: 4.5rem; /* 72 px */
+}
+
+.pageContainer .image {
+  width: max-content;
+  position: relative;
+}
+
+.pageContainer .buttons {
+  display: flex;
+  margin-top: auto;
+  width: 100%;
+  align-items: center;
+}
+
+.pageContainer .buttons button {
+  color: #1fc34d;
+  font-size: 3rem; /* 48px */
+  background-color: transparent;
+  font-family: 'Rufina';
+}
+
+.pageContainer .buttons button.next {
+  margin-left: auto;
+}
+
+.pageContainer .buttons button.back {
+  margin-right: auto;
+}

@@ -1,0 +1,61 @@
+.infoPage {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem; /* 16px */
+  overflow: auto;
+  background-color: black;
+  padding: 1.5rem; /* 24px */
+}
+
+.infoPage .title {
+  text-align: center;
+  font-size: 4.5rem; /* 72 px */
+}
+
+.infoPage button {
+  margin-top: auto;
+  margin-left: auto;
+  background-color: transparent;
+  color: #1fc34d;
+  font-size: 3rem; /* 48px */
+  cursor: pointer;
+}
+
+.infoPage .image {
+  width: max-content;
+  position: relative;
+}
+
+.infoPage li {
+  list-style: disc;
+  list-style-position: outside;
+}
+
+.infoPage .infoRules {
+  position: absolute;
+  top: 1rem;
+  right: 0;
+  color: black;
+  width: 455px;
+  display: flex;
+  flex-direction: column;
+  font-size: 1.5rem; /* 24px */
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  font-weight: 900;
+}
+
+.infoPage .landRules {
+  position: absolute;
+  top: 1rem;
+  right: 0;
+  color: black;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  font-size: 1.5rem; /* 24px */
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  font-weight: 900;
+}

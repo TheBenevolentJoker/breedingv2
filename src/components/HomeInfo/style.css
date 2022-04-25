@@ -1,0 +1,16 @@
+.homeInfo {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  padding: 1rem;
+  font-size: 0.875rem; /* 14px */
+  background: rgba(0, 0, 0, 0.32);
+  width: max-content;
+  margin-left: auto;
+}
+
+.homeInfo section {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
