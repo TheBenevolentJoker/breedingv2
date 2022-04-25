@@ -177,7 +177,7 @@ class ContractAPI {
   }
 
   async claimMVGLD(tokenId) {
-    return await this.contracts['MVGLD'].claim(tokenId);
+    return await this.contracts['MVGLD'].claim([tokenId]);
   }
 
   async mintFusionLevelUp(tokenId) {
