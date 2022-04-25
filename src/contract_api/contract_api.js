@@ -210,11 +210,11 @@ class ContractAPI {
   async buyMiniItems(title, amount) {
     const contract = this.contracts['MiniMarket'];
 
-    if (title === '$4 MiniCandy') {
+    if (title === '6 mvgld MiniCandy') {
       await contract.mintMiniCandy(amount);
-    } else if (title === '$10 MiniCoffe') {
+    } else if (title === '10 mvgld MiniCoffe') {
       await contract.mintUnBlacklist(amount);
-    } else if (title === '$20 MiniManual') {
+    } else if (title === '20 mvgld MiniManual') {
       await contract.mintJobLevelUp(amount);
     }
   }

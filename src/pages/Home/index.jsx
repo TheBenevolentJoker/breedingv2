@@ -35,7 +35,7 @@ const STAKINGS = [
 
 const MARKETS = [
   {
-    title: '4 mvgld MiniCandy',
+    title: '6 mvgld MiniCandy',
     image: market1Image,
   },
   {
