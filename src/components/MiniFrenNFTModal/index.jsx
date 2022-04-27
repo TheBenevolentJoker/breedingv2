@@ -91,7 +91,7 @@ const MiniFrenNFTModal = ({open, handleClose, item}) => {
   }
 
   const claim = async () => {
-    await contractAPI.claimMVGLD(item.tokenId);
+    await contractAPI.claimMVGLD([item.tokenId]);
   }
 
   const getFruitId = (level) => {

@@ -32,6 +32,10 @@ const BorderLinearProgress = withStyles((theme) => ({
 const useStyles = makeStyles((theme) => ({
   stakeButtons: {
     marginRight: '1rem',
+  },
+  claimAllButton: {
+    position: 'absolute',
+    right: '0'
   }
 }));
 
@@ -47,7 +51,8 @@ const Cemetery = () => {
   const [indexOfSelectedNft, setIndexOfselectedNft] = useState(-1);
   const [indexOfSelectedNftInWallet, setIndexOfselectedNftInWallet] = useState(-1);
   const [reward, setReward] = useState(0);
-  
+  const [loading, setLoading] = useState(false);
+
   const reloadNfts = async () => {
     if (account) {
       let nftsInWalletWithJSON = await tombFinance.getNFTsInWallet(account, 'Chilla');
@@ -113,15 +118,19 @@ const Cemetery = () => {
   }
 
   const claim = async () => {
-    await tombFinance.claim(nftsStaked[indexOfSelectedNft].tokenId, 'Chilla Staking');
+    await tombFinance.claim([nftsStaked[indexOfSelectedNft].tokenId], 'Chilla Staking');
     setReward(await tombFinance.calculateReward(account, nftsStaked[indexOfSelectedNft].tokenId, 'Chilla Staking'));
+  }
+
+  const claimAll = async () => {
+    setLoading(true);
+    await tombFinance.claim(nftsStaked.map(item => item.tokenId), 'Chilla Staking');
+    setLoading(false);
   }
 
   const approve = async () => {
     await tombFinance.approve('Chilla', 'Chilla Staking');
   }
-
-  console.log(nftTotalSupply, nftStakedTotalSupply);
 
   return (
     <div
@@ -134,10 +143,18 @@ const Cemetery = () => {
         padding: '2rem'
       }}
     >
-      <span style={{ fontSize: '96px', display: 'block' }}>Minichilla NFT Staking</span>
-      <span style={{ fontSize: '36px' }}>
-        { parseInt(nftStakedTotalSupply * 100 / nftTotalSupply) } % Minichilla STAKED
-      </span>
+      <span style={{ fontSize: '96px', display: 'block', marginBottom: '2rem' }}>Minichilla NFT Staking</span>
+      <div style={{ textAlign: 'center' }}>
+        <span style={{ fontSize: '36px' }}>
+          { parseInt(nftStakedTotalSupply * 100 / nftTotalSupply) } % Minichilla STAKED
+        </span>
+        {
+          !!nftsStaked?.length &&
+          <Button onClick={claimAll} disabled={loading}  variant="contained" classes={{ root: classes.claimAllButton }} color="primary">
+            Claim All
+          </Button>
+        }
+      </div>
       <BorderLinearProgress variant="determinate" value={nftStakedTotalSupply * 100 / nftTotalSupply} />
       <br/>
       <Grid container spacing={2}>

@@ -8,7 +8,8 @@
 }
 
 .homeList .title {
-  position: absolute;
+  position: relative;
+  text-align: center;
   top: 0;
   left: 50%;
   transform: translate(-50%, -100%);
@@ -45,4 +46,9 @@
   bottom: 0;
   left: 50%;
   transform: translate(-50%, 0);
+}
+
+.btn-claim-all {
+  position: absolute !important;
+  right: 0;
 }

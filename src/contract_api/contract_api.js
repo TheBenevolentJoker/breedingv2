@@ -176,8 +176,8 @@ class ContractAPI {
     return await this.contracts['Breeder'].fusionLevelUp(burning, leveling);
   }
 
-  async claimMVGLD(tokenId) {
-    return await this.contracts['MVGLD'].claim([tokenId]);
+  async claimMVGLD(tokenIds) {
+    return await this.contracts['MVGLD'].claim(tokenIds);
   }
 
   async mintFusionLevelUp(tokenId) {
@@ -276,8 +276,8 @@ class ContractAPI {
     await this.contracts[contract].withdraw([tokenId]);
   }
 
-  async claim(tokenId, contract = 'StakingNFT') {
-    await this.contracts[contract].claimRewards([BigNumber.from(tokenId)]);
+  async claim(tokenIds, contract = 'StakingNFT') {
+    await this.contracts[contract].claimRewards(tokenIds);
   }
 
   async stakeNfts(tokenIds, contract = 'StakingNFT') {
@@ -294,9 +294,9 @@ class ContractAPI {
   }
 
   async landStakingApprove() {
-    const stakingAddress = this.config.contracts['LandStakingv1'].address;
+    const stakingAddress = this.config.contracts['Land Staking'].address;
 
-    await this.contracts['LandWalletNFT'].setApprovalForAll(stakingAddress, true);
+    await this.contracts['Land'].setApprovalForAll(stakingAddress, true);
   }
 
   async landStakingClaim1() {

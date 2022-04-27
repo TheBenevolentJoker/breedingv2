@@ -32,6 +32,10 @@ const BorderLinearProgress = withStyles((theme) => ({
 const useStyles = makeStyles((theme) => ({
   stakeButtons: {
     marginRight: '1rem',
+  },
+  claimAllButton: {
+    position: 'absolute',
+    right: '0'
   }
 }));
 
@@ -48,6 +52,7 @@ const Cemetery = () => {
   const [indexOfSelectedNft, setIndexOfselectedNft] = useState(-1);
   const [indexOfSelectedNftInWallet, setIndexOfselectedNftInWallet] = useState(-1);
   const [reward, setReward] = useState(0);
+  const [loading, setLoading] = useState(false);
 
   const reloadNfts = async () => {
     if (account) {
@@ -115,12 +120,18 @@ const Cemetery = () => {
   }
 
   const claim = async () => {
-    await tombFinance.claim(nftsStaked[indexOfSelectedNft].tokenId, 'Guinea Staking');
+    await tombFinance.claim([nftsStaked[indexOfSelectedNft].tokenId], 'Guinea Staking');
     setReward(await tombFinance.calculateReward(account, nftsStaked[indexOfSelectedNft].tokenId, 'Guinea Staking'));
   }
 
   const approve = async () => {
     await tombFinance.approve('Guinea', 'Guinea Staking');
+  }
+
+  const claimAll = async () => {
+    setLoading(true);
+    await tombFinance.claim(nftsStaked.map(item => item.tokenId), 'Guinea Staking');
+    setLoading(false);
   }
 
   return (
@@ -133,9 +144,17 @@ const Cemetery = () => {
       padding: '2rem',
     }}>
       <span style={{ fontSize: '96px', display: 'block' }}>MiniGuineas NFT Staking</span>
-      <span style={{ fontSize: '36px' }}>
-        { parseInt(nftStakedTotalSupply * 100 / nftTotalSupply) } % MiniGuineas STAKED
-      </span>
+      <div style={{ textAlign: 'center' }}>
+        <span style={{ fontSize: '36px' }}>
+          { parseInt(nftStakedTotalSupply * 100 / nftTotalSupply) } % MiniGuineas STAKED
+        </span>
+        {
+          !!nftsStaked?.length &&
+          <Button onClick={claimAll} disabled={loading}  variant="contained" classes={{ root: classes.claimAllButton }} color="primary">
+            Claim All
+          </Button>
+        }
+      </div>
       <BorderLinearProgress variant="determinate" value={nftStakedTotalSupply * 100 / nftTotalSupply} />
       <br/>
       <Grid container spacing={2}>
