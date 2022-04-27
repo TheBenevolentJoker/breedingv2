@@ -145,7 +145,7 @@ const Cemetery = () => {
     >
       <span style={{ fontSize: '96px', display: 'block', marginBottom: '2rem' }}>Minichilla NFT Staking</span>
       <div style={{ textAlign: 'center' }}>
-        <span style={{ fontSize: '36px' }}>
+        <span style={{ fontSize: '36px', position: 'relative', marginTop: '1rem'  }}>
           { parseInt(nftStakedTotalSupply * 100 / nftTotalSupply) } % Minichilla STAKED
         </span>
         {

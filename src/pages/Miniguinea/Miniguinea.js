@@ -144,7 +144,7 @@ const Cemetery = () => {
       padding: '2rem',
     }}>
       <span style={{ fontSize: '96px', display: 'block' }}>MiniGuineas NFT Staking</span>
-      <div style={{ textAlign: 'center' }}>
+      <div style={{ textAlign: 'center', position: 'relative', marginTop: '1rem'  }}>
         <span style={{ fontSize: '36px' }}>
           { parseInt(nftStakedTotalSupply * 100 / nftTotalSupply) } % MiniGuineas STAKED
         </span>

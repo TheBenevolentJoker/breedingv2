@@ -293,12 +293,6 @@ class ContractAPI {
     await this.contracts[nftContract].setApprovalForAll(stakingAddress, true);
   }
 
-  async landStakingApprove() {
-    const stakingAddress = this.config.contracts['Land Staking'].address;
-
-    await this.contracts['Land'].setApprovalForAll(stakingAddress, true);
-  }
-
   async landStakingClaim1() {
     await this.contracts['LandStakingv1'].claimEmissions1();
   }

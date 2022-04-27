@@ -134,7 +134,7 @@ const Cemetery = () => {
   }
 
   const approve = async () => {
-    await tombFinance.landStakingApprove();
+    await tombFinance.approve('Land', 'Land Staking');
   }
 
   const claimAll = async () => {
@@ -155,7 +155,7 @@ const Cemetery = () => {
       }}
     >
       <span style={{ fontSize: '96px', display: 'block' }}>Miniland NFT Staking</span>
-      <div style={{ textAlign: 'center' }}>
+      <div style={{ textAlign: 'center', position: 'relative', marginTop: '1rem' }}>
         <span style={{ fontSize: '36px' }}>
           { parseInt(nftStakedTotalSupply * 100 / nftTotalSupply) } % Miniland STAKED
         </span>
