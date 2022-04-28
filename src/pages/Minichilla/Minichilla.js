@@ -35,7 +35,8 @@ const useStyles = makeStyles((theme) => ({
   },
   claimAllButton: {
     position: 'absolute',
-    right: '0'
+    right: '0',
+    color: 'white',
   }
 }));
 
@@ -144,8 +145,8 @@ const Cemetery = () => {
       }}
     >
       <span style={{ fontSize: '96px', display: 'block', marginBottom: '2rem' }}>Minichilla NFT Staking</span>
-      <div style={{ textAlign: 'center' }}>
-        <span style={{ fontSize: '36px', position: 'relative', marginTop: '1rem'  }}>
+      <div style={{ textAlign: 'center', position: 'relative', marginTop: '1rem' }}>
+        <span style={{ fontSize: '36px'}}>
           { parseInt(nftStakedTotalSupply * 100 / nftTotalSupply) } % Minichilla STAKED
         </span>
         {

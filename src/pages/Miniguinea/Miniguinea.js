@@ -35,7 +35,8 @@ const useStyles = makeStyles((theme) => ({
   },
   claimAllButton: {
     position: 'absolute',
-    right: '0'
+    right: '0',
+    color: 'white',
   }
 }));
 
@@ -49,6 +50,7 @@ const Cemetery = () => {
   const [nftsStaked, setNftsStaked] = useState([]);
   const [nftTotalSupply, setNftTotalSupply] = useState(1);
   const [nftStakedTotalSupply, setNftStakedTotalSupply] = useState(0);
+  const [selectedNftsInWallet, setSelectedNftsInWallet] = useState([]);
   const [indexOfSelectedNft, setIndexOfselectedNft] = useState(-1);
   const [indexOfSelectedNftInWallet, setIndexOfselectedNftInWallet] = useState(-1);
   const [reward, setReward] = useState(0);
@@ -105,12 +107,13 @@ const Cemetery = () => {
   }
 
   const selectNftInWallet = async (index) => {
-    setIndexOfselectedNftInWallet(index);
+    if (selectedNftsInWallet.includes(index)) setSelectedNftsInWallet(selectedNftsInWallet.filter(_index => _index !== index));
+    else setSelectedNftsInWallet([...selectedNftsInWallet, index]);
     setIndexOfselectedNft(-1);
   }
 
   const stake = async () => {
-    await tombFinance.stakeNfts([nftsInWallet[indexOfSelectedNftInWallet].tokenId], 'Guinea Staking');
+    await tombFinance.stakeNfts(selectedNftsInWallet.map(_index => nftsInWallet[_index].tokenId), 'Guinea Staking');
     reloadNfts();
   }
 
@@ -181,7 +184,7 @@ const Cemetery = () => {
                     <img
                       src={image} 
                       style={{
-                        border: index === indexOfSelectedNftInWallet ? '2px solid blue' : '',
+                        border: selectedNftsInWallet.includes(index) ? '2px solid blue' : '',
                         width: '150px',
                         height: '150px',
                       }}
@@ -200,7 +203,7 @@ const Cemetery = () => {
             background: 'gray',
             padding: '1rem',
             borderRadius: '4px',
-            visibility: indexOfSelectedNft === -1 && indexOfSelectedNftInWallet === -1 ? 'hidden' : 'visible',
+            visibility: indexOfSelectedNft === -1 && selectedNftsInWallet.length === 0 ? 'hidden' : 'visible',
             height: '100px',
           }}>
             {
@@ -237,10 +240,7 @@ const Cemetery = () => {
               </>
             }
             {
-              indexOfSelectedNftInWallet > -1 && <>
-                <h1>
-                  { nftsInWallet[indexOfSelectedNftInWallet].name }
-                </h1>
+              selectedNftsInWallet.length > 0 && <>
                 <Box style={{
                   display: 'flex',
                   alignItems: 'center',

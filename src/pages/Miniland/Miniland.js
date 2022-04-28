@@ -37,7 +37,8 @@ const useStyles = makeStyles((theme) => ({
   },
   claimAllButton: {
     position: 'absolute',
-    right: '0'
+    right: '0',
+    color: 'white',
   }
 }));
 
