@@ -50,7 +50,7 @@ const Cemetery = () => {
   const [nftTotalSupply, setNftTotalSupply] = useState(1);
   const [nftStakedTotalSupply, setNftStakedTotalSupply] = useState(0);
   const [indexOfSelectedNft, setIndexOfselectedNft] = useState(-1);
-  const [indexOfSelectedNftInWallet, setIndexOfselectedNftInWallet] = useState(-1);
+  const [selectedNftsInWallet, setSelectedNftsInWallet] = useState([]);
   const [reward, setReward] = useState(0);
   const [loading, setLoading] = useState(false);
 
@@ -99,17 +99,18 @@ const Cemetery = () => {
 
   const selectNftStaked = async (index) => {
     setIndexOfselectedNft(index);
-    setIndexOfselectedNftInWallet(-1);
+    setSelectedNftsInWallet([]);
     setReward(await tombFinance.calculateReward(account, nftsStaked[index].tokenId, 'Chilla Staking'));
   }
 
   const selectNftInWallet = async (index) => {
-    setIndexOfselectedNftInWallet(index);
+    if (selectedNftsInWallet.includes(index)) setSelectedNftsInWallet(selectedNftsInWallet.filter(_index => _index !== index));
+    else setSelectedNftsInWallet([...selectedNftsInWallet, index]);
     setIndexOfselectedNft(-1);
   }
 
   const stake = async () => {
-    await tombFinance.stakeNfts([nftsInWallet[indexOfSelectedNftInWallet].tokenId], 'Chilla Staking');
+    await tombFinance.stakeNfts(selectedNftsInWallet.map(_index => nftsInWallet[_index].tokenId), 'Chilla Staking');
     reloadNfts();
   }
 
@@ -182,7 +183,7 @@ const Cemetery = () => {
                     <img
                       src={image} 
                       style={{
-                        border: index === indexOfSelectedNftInWallet ? '2px solid blue' : '',
+                        border: selectedNftsInWallet.includes(index) ? '2px solid blue' : '',
                         width: '150px',
                         height: '150px',
                       }}
@@ -201,7 +202,7 @@ const Cemetery = () => {
             background: 'gray',
             padding: '1rem',
             borderRadius: '4px',
-            visibility: indexOfSelectedNft === -1 && indexOfSelectedNftInWallet === -1 ? 'hidden' : 'visible',
+            visibility: indexOfSelectedNft === -1 && selectedNftsInWallet.length === 0 ? 'hidden' : 'visible',
             height: '100px',
           }}>
             {
@@ -238,10 +239,7 @@ const Cemetery = () => {
               </>
             }
             {
-              indexOfSelectedNftInWallet > -1 && <>
-                <h1>
-                  { nftsInWallet[indexOfSelectedNftInWallet].name }
-                </h1>
+             selectedNftsInWallet.length > 0 && <>
                 <Box style={{
                   display: 'flex',
                   alignItems: 'center',

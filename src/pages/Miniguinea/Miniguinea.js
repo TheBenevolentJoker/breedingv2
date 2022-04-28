@@ -102,7 +102,7 @@ const Cemetery = () => {
 
   const selectNftStaked = async (index) => {
     setIndexOfselectedNft(index);
-    setIndexOfselectedNftInWallet(-1);
+    setSelectedNftsInWallet([]);
     setReward(await tombFinance.calculateReward(account, nftsStaked[index].tokenId, 'Guinea Staking'));
   }
 
