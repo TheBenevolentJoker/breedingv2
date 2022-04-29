@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react'
 import {Button, Modal} from '@material-ui/core'
+import { BigNumber } from 'ethers'
 import { useWallet } from 'use-wallet'
 import nftImage from '../../assets/nft.png'
 import NftInfo from '../NftInfo'
@@ -26,6 +27,7 @@ const MiniFrenNFTModal = ({open, handleClose, item}) => {
   const [generation, setGeneration] = useState();
   const [baseLevel, setBaseLevel] = useState();
   const [jobLevel, setJobLevel] = useState();
+  const [pendingMvGLD, setPendingMvGLD] = useState();
   const [heistLevel, setHeistLevel] = useState();
   const [fusionClaimed, setFusionClaimed] = useState();
   const [blacklisted, setBlacklisted] = useState();
@@ -43,7 +45,7 @@ const MiniFrenNFTModal = ({open, handleClose, item}) => {
         setHeistLevel((await contractAPI.getHeistLevel(item.tokenId)).toNumber());
         setGeneration((await contractAPI.getGeneration(item.tokenId)).toNumber());
         setBlacklisted(await contractAPI.checkBlacklist(item.tokenId, item.tokenType));
-        console.log(item);
+        setPendingMvGLD((await contractAPI.getClaimable(item.tokenId)).div(BigNumber.from('1000000000000000000')).toString());
         const url = item.tokenURI.replace('ipfs://', 'https://gateway.pinata.cloud/ipfs/');
         const data = await (await fetch(url)).json();
         setImage(data.image.replace('ipfs://', 'https://gateway.pinata.cloud/ipfs/'));
@@ -149,6 +151,7 @@ const MiniFrenNFTModal = ({open, handleClose, item}) => {
               <p>Base Level: { baseLevel }</p>
               <p>Job Level: { jobLevel }</p>
               <p>Heist Level: { heistLevel }</p>
+              <p>Pending MVGLD: { pendingMvGLD }</p>
             </div>
           </section>
           {

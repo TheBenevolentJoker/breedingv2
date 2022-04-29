@@ -180,6 +180,10 @@ class ContractAPI {
     return await this.contracts['MVGLD'].claim(tokenIds);
   }
 
+  async getClaimable(tokenId) {
+    return await this.contracts['MVGLD'].getClaimable(tokenId);
+  }
+  
   async mintFusionLevelUp(tokenId) {
     return await this.contracts['MiniMarket'].mintFusionLevelUp(tokenId);
   }
