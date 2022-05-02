@@ -12,6 +12,7 @@ const GenesisNFTModal = ({open, handleClose, item}) => {
   const [image, setImage] = useState();
   const [blacklisted, setBlacklisted] = useState();
   const [breeding, setBreeding] = useState(false);
+  const [breedLimited, setBreedLimited] = useState(false);
 
   const levelUp = async () => {
     await contractAPI.levelUpGenesisNFTItem(item.tokenId, item.tokenType);
@@ -35,6 +36,7 @@ const GenesisNFTModal = ({open, handleClose, item}) => {
 
   const checkBlacklist = async () => {
     setBlacklisted(await contractAPI.checkBlacklist(item.tokenId, item.tokenType));
+    setBreedLimited(await contractAPI.isBreedLimited(item.tokenId, item.tokenType));
   }
 
   useEffect(() => {
@@ -80,9 +82,9 @@ const GenesisNFTModal = ({open, handleClose, item}) => {
             </Button>
             {
               item.tokenType !== 'Land' &&
-              <Button onClick={breed} disabled={breeding}>
+              <Button onClick={breed} disabled={breeding || breedLimited}>
                 <NftInfo
-                  title={breeding ? "Breeding..." : "Breed"}
+                  title={breeding ? "Breeding..." : breedLimited ? "Breed Limited" : "Breed"}
                   miniTitle="(Needs 1 Other MiniVerse NFT in Wallet)"
                   hasQuestion
                 />

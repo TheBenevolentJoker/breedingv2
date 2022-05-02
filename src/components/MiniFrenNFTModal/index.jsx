@@ -31,6 +31,7 @@ const MiniFrenNFTModal = ({open, handleClose, item}) => {
   const [heistLevel, setHeistLevel] = useState();
   const [fusionClaimed, setFusionClaimed] = useState();
   const [blacklisted, setBlacklisted] = useState();
+  const [breedLimited, setBreedLimited] = useState(false);
   const [selectingBurning, setSelectingBuring] = useState(false);
   const [miniFrenNFTItems, setMiniFrenNFTItems] = useState([]);
   const [image, setImage] = useState();
@@ -45,6 +46,7 @@ const MiniFrenNFTModal = ({open, handleClose, item}) => {
         setHeistLevel((await contractAPI.getHeistLevel(item.tokenId)).toNumber());
         setGeneration((await contractAPI.getGeneration(item.tokenId)).toNumber());
         setBlacklisted(await contractAPI.checkBlacklist(item.tokenId, item.tokenType));
+        setBreedLimited(await contractAPI.isBreedLimited(item.tokenId, item.tokenType));
         setPendingMvGLD((await contractAPI.getClaimable(item.tokenId)).div(BigNumber.from('100000000000000')).toNumber() / 10000);
         const url = item.tokenURI.replace('ipfs://', 'https://gateway.pinata.cloud/ipfs/');
         const data = await (await fetch(url)).json();

@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react'
 import { useWallet } from 'use-wallet'
-import { Modal, Slider, Grid } from '@material-ui/core'
+import { Modal, Slider, Grid, Button as MuiButton } from '@material-ui/core'
 import market1Image from '../../assets/market/market1.png'
 import market2Image from '../../assets/market/market2.png'
 import market3Image from '../../assets/market/market3.png'
@@ -35,16 +35,19 @@ const STAKINGS = [
 
 const MARKETS = [
   {
-    title: '6 mvgld MiniCandy',
+    title: 'MiniCandy',
     image: market1Image,
+    price: '6 mvgld',
   },
   {
-    title: '10 mvgld MiniCoffe',
+    title: 'MiniCoffe',
     image: market2Image,
+    price: '10 mvgld',
   },
   {
-    title: '20 mvgld MiniManual',
+    title: 'MiniManual',
     image: market3Image,
+    price: '20 mvgld',
   },
 ]
 
@@ -122,12 +125,15 @@ const Home = () => {
                 ))}
               </HomeCard>
               <HomeCard title="MiniMarket" className="miniMarket">
-                {MARKETS.map(({ title, image }, index) => (
-                  <div className="market" key={index} onClick={() => startBuyMiniItems(title)}>
+                {MARKETS.map(({ title, image, price }, index) => (
+                  <div className="market" key={index}>
                     <div className="image">
                       <img src={image} alt={title} height="127"/>
                     </div>
                     <span>{title}</span>
+                    <MuiButton classes={{ root: 'btn-white' }} color="primary" variant="contained" onClick={() => startBuyMiniItems(title)}>
+                      Buy ({ price })
+                    </MuiButton>
                   </div>
                 ))}
               </HomeCard>

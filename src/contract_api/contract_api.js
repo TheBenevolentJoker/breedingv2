@@ -183,7 +183,7 @@ class ContractAPI {
   async getClaimable(tokenId) {
     return await this.contracts['MVGLD'].getClaimable(tokenId);
   }
-  
+
   async mintFusionLevelUp(tokenId) {
     return await this.contracts['MiniMarket'].mintFusionLevelUp(tokenId);
   }
@@ -214,11 +214,11 @@ class ContractAPI {
   async buyMiniItems(title, amount) {
     const contract = this.contracts['MiniMarket'];
 
-    if (title === '6 mvgld MiniCandy') {
+    if (title === 'MiniCandy') {
       await contract.mintMiniCandy(amount);
-    } else if (title === '10 mvgld MiniCoffe') {
+    } else if (title === 'MiniCoffe') {
       await contract.mintUnBlacklist(amount);
-    } else if (title === '20 mvgld MiniManual') {
+    } else if (title === 'MiniManual') {
       await contract.mintJobLevelUp(amount);
     }
   }
@@ -315,6 +315,27 @@ class ContractAPI {
         };
       })
     );
+  }
+
+  async isBreedLimited(tokenId, tokenType) {
+    let bred, limitCount;
+    const contract = this.contracts['Breeder'];
+    
+    console.log(contract);
+
+    if (tokenType === 'Fren') {
+      bred = await contract.bred3(tokenId);
+      limitCount = await contract.limitCount2();
+    } else if (tokenType === 'Guinea') {
+      bred = await contract.bred1(tokenId);
+      limitCount = await contract.limitCount();
+    } else if (tokenType === 'Chilla') {
+      bred = await contract.bred2(tokenId);
+      limitCount = await contract.limitCount();
+    }
+
+
+    return bred.gt(limitCount);
   }
 }
 
