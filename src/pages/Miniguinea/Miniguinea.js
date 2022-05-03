@@ -7,6 +7,8 @@ import { createGlobalStyle } from 'styled-components';
 
 //import useBanks from '../../hooks/useBanks';
 import { Context as ContractAPIContext } from '../../contexts/ContractAPIProvider/ContractAPIProvider'; 
+import config from '../../config';
+import { BigNumber } from 'ethers';
 
 const BackgroundImage = createGlobalStyle`
   body {
@@ -100,10 +102,22 @@ const Cemetery = () => {
     }
   }
 
+  const calculateReward = async (index) => {
+    const level = await tombFinance.getGenesisNFTItemLevel(nftsStaked[index].tokenId, 'Guinea');
+    const rewardInWei = await tombFinance.calculateReward(account, nftsStaked[index].tokenId, 'Guinea Staking');
+    setReward(
+      rewardInWei
+      .div(BigNumber.from('100000000000000'))
+      .mul(BigNumber.from(config.claimRates1[level]))
+      .div(BigNumber.from(100))
+      .toNumber() / 10000
+    );
+  }
+
   const selectNftStaked = async (index) => {
     setIndexOfselectedNft(index);
     setSelectedNftsInWallet([]);
-    setReward(await tombFinance.calculateReward(account, nftsStaked[index].tokenId, 'Guinea Staking'));
+    await calculateReward(index);
   }
 
   const selectNftInWallet = async (index) => {
@@ -124,7 +138,7 @@ const Cemetery = () => {
 
   const claim = async () => {
     await tombFinance.claim([nftsStaked[indexOfSelectedNft].tokenId], 'Guinea Staking');
-    setReward(await tombFinance.calculateReward(account, nftsStaked[indexOfSelectedNft].tokenId, 'Guinea Staking'));
+    await calculateReward(indexOfSelectedNft);
   }
 
   const approve = async () => {

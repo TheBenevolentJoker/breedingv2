@@ -272,8 +272,7 @@ class ContractAPI {
 
   async calculateReward(address, tokenId, contract = 'StakingNFT') {
     const reward = await this.contracts[contract].calculateReward(address, tokenId);
-
-    return reward.toString();
+    return reward;
   }
 
   async unStake(tokenId, contract = 'StakingNFT') {
@@ -320,8 +319,6 @@ class ContractAPI {
   async isBreedLimited(tokenId, tokenType) {
     let bred, limitCount;
     const contract = this.contracts['Breeder'];
-    
-    console.log(contract);
 
     if (tokenType === 'Fren') {
       bred = await contract.bred3(tokenId);
@@ -336,6 +333,14 @@ class ContractAPI {
 
 
     return bred.gt(limitCount);
+  }
+
+  async deedType(tokenId) {
+    return await this.contracts['Land'].deedType(tokenId);
+  }
+
+  async getMiniFrenTotalSupply() {
+    return await this.contracts['Breeder'].trueSupply();
   }
 }
 

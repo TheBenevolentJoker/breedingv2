@@ -59,6 +59,7 @@ const Home = () => {
   const [stakingComponent, setStakingComponent] = useState(null);
   const [selectedItemTitle, setSelectedItemTitle] = useState("");
   const [amount, setAmount] = useState(1);
+  const [totalSupply, setTotalSupply] = useState(0);
 
   useEffect(() => {
     (async () => {
@@ -66,6 +67,7 @@ const Home = () => {
         //await contractAPI.getGenesisNFTItems(account);
         setGenesisNFTItems(await contractAPI.getGenesisNFTItems(account));
         setMiniFrenNFTItems(await contractAPI.getMiniFrenNFTItems(account));
+        setTotalSupply(await contractAPI.getMiniFrenTotalSupply());
       }
     })();
   }, [account, contractAPI]);
@@ -143,6 +145,7 @@ const Home = () => {
               <HomeList
                 title="MiniFrens Generations"
                 items={miniFrenNFTItems}
+                totalSupply={totalSupply}
               />
             </section>
           </div>
