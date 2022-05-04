@@ -3,19 +3,11 @@ import { useWallet } from 'use-wallet';
 
 import { Box, Grid, LinearProgress, Button } from '@material-ui/core';
 import { withStyles, makeStyles } from '@material-ui/styles';
-import { createGlobalStyle } from 'styled-components';
 
 //import useBanks from '../../hooks/useBanks';
 import { Context as ContractAPIContext } from '../../contexts/ContractAPIProvider/ContractAPIProvider'; 
 import config from '../../config';
 import { BigNumber } from 'ethers';
-
-const BackgroundImage = createGlobalStyle`
-  body {
-    background-color: #1D2951;
-    background-size: cover !important;
-  }
-`;
 
 const BorderLinearProgress = withStyles((theme) => ({
   root: {
@@ -54,7 +46,6 @@ const Cemetery = () => {
   const [nftStakedTotalSupply, setNftStakedTotalSupply] = useState(0);
   const [selectedNftsInWallet, setSelectedNftsInWallet] = useState([]);
   const [indexOfSelectedNft, setIndexOfselectedNft] = useState(-1);
-  const [indexOfSelectedNftInWallet, setIndexOfselectedNftInWallet] = useState(-1);
   const [reward, setReward] = useState(0);
   const [loading, setLoading] = useState(false);
 

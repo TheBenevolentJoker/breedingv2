@@ -1,5 +1,6 @@
 import React from 'react'
 import Button from '../Button'
+
 import './style.css'
 
 const NftInfo = ({
@@ -10,8 +11,14 @@ const NftInfo = ({
   isBlack,
   btnImg,
   infoUrl,
+  openInfoModal,
   ...props
 }) => {
+  const questionClick = (event) => {
+    event.stopPropagation();
+    openInfoModal(btnImg, infoUrl);
+  }
+
   return (
     <div className={`nftInfo ${isBlack ? 'black' : ''}`} {...props}>
       <div className="text">
@@ -21,13 +28,13 @@ const NftInfo = ({
       </div>
       {hasQuestion && 
         <>
-        {
-          !!btnImg
-          ? <a href={infoUrl} target="_blank">
-              <img src={btnImg} width="40" height="40"/>
-            </a>
-          : <a className="question button" href={infoUrl}>?</a>
-        }
+          {
+            !!btnImg
+            ? <Button className="question" onClick={questionClick}>
+                ?
+              </Button>
+            : <a className="question button" href={infoUrl} target="_blank"  rel="noopener noreferrer">?</a>
+          }
         </>
       }
     </div>

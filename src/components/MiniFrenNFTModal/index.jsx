@@ -8,6 +8,7 @@ import jobLevelUpImage from '../../assets/job_level_up.png'
 import fruitHeistsImage from '../../assets/fruit_heists.png'
 import NftInfo from '../NftInfo'
 import { Context as ContractAPIContext } from '../../contexts/ContractAPIProvider/ContractAPIProvider';
+import InfoModal from '../InfoModal'
 
 import './style.css'
 
@@ -34,10 +35,12 @@ const MiniFrenNFTModal = ({open, handleClose, item}) => {
   const [heistLevel, setHeistLevel] = useState();
   const [fusionClaimed, setFusionClaimed] = useState();
   const [blacklisted, setBlacklisted] = useState();
-  const [breedLimited, setBreedLimited] = useState(false);
+  const [, setBreedLimited] = useState(false);
   const [selectingBurning, setSelectingBuring] = useState(false);
   const [miniFrenNFTItems, setMiniFrenNFTItems] = useState([]);
   const [image, setImage] = useState();
+  const [infoOpen, setOpen] = useState(false);
+  const [infoData, setInfoData] = useState({});
 
   useEffect(() => {
     if (item){
@@ -56,7 +59,7 @@ const MiniFrenNFTModal = ({open, handleClose, item}) => {
         setImage(data.image.replace('ipfs://', 'https://gateway.pinata.cloud/ipfs/'));
       })();
     }
-  }, [item]);
+  }, [item, contractAPI]);
 
   useEffect(() => {
     if (item && heistLevel !== undefined) {
@@ -64,7 +67,7 @@ const MiniFrenNFTModal = ({open, handleClose, item}) => {
         setFusionClaimed(await contractAPI.fusionClaimed(item.tokenId, heistLevel));
       })();
     }
-  }, [heistLevel, item]);
+  }, [heistLevel, item, contractAPI]);
 
   const baseLevelUp = async () => {
     await contractAPI.baseLevelUp(item.tokenId);
@@ -131,6 +134,18 @@ const MiniFrenNFTModal = ({open, handleClose, item}) => {
   const clearBlacklist = async () => {
     await contractAPI.clearBlacklist(item.tokenId, item.tokenType);
   }
+  
+  const openInfoModal = (infoImage, infoUrl) => {
+    setInfoData({
+      infoImage, infoUrl
+    });
+    setOpen(true);
+
+  }
+
+  const handleInfoClose = () => {
+    setOpen(false);
+  }
 
   return (
     <Modal
@@ -169,7 +184,8 @@ const MiniFrenNFTModal = ({open, handleClose, item}) => {
                       subTitle="Base Level" 
                       hasQuestion
                       btnImg={baseLevelUpImage}
-                      infoUrl="https://miniversefinance.gitbook.io/docs/nft-gamefi-utility/nft-nodes-breeding-game-coming-soon/minifren-leveling" 
+                      infoUrl="https://miniversefinance.gitbook.io/docs/nft-gamefi-utility/nft-nodes-breeding-game-coming-soon/minifren-leveling"
+                      openInfoModal={openInfoModal}
                     />
                   </Button>
                   <Button onClick={jobLevelUp}>
@@ -179,6 +195,7 @@ const MiniFrenNFTModal = ({open, handleClose, item}) => {
                       hasQuestion
                       btnImg={jobLevelUpImage}
                       infoUrl="https://miniversefinance.gitbook.io/docs/nft-gamefi-utility/nft-nodes-breeding-game-coming-soon/mvgld-job-leveling" 
+                      openInfoModal={openInfoModal}
                     />
                   </Button>
                   {
@@ -192,6 +209,7 @@ const MiniFrenNFTModal = ({open, handleClose, item}) => {
                         hasQuestion
                         btnImg={fruitHeistsImage}
                         infoUrl="https://miniversefinance.gitbook.io/docs/nft-gamefi-utility/nft-nodes-breeding-game-coming-soon/fruit-heists" 
+                        openInfoModal={openInfoModal}
                       />
                     </Button>
                   }
@@ -204,6 +222,7 @@ const MiniFrenNFTModal = ({open, handleClose, item}) => {
                           hasQuestion
                           btnImg={breedImage}
                           infoUrl="https://miniversefinance.gitbook.io/docs/nft-gamefi-utility/nft-nodes-breeding-game-coming-soon"
+                          openInfoModal={openInfoModal}
                         />
                       </Button>
                     : <>
@@ -243,6 +262,7 @@ const MiniFrenNFTModal = ({open, handleClose, item}) => {
               )
           }
         </div>
+        <InfoModal img={infoData.infoImage} url={infoData.infoUrl} open={infoOpen} handleClose={handleInfoClose} />
       </div>
     </Modal>
   )

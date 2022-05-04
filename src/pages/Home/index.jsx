@@ -99,10 +99,6 @@ const Home = () => {
     setSelectedItemTitle("");
   }
 
-  const gotoMvDollarEmissionInfo = () => {
-
-  }
-
   return (
     <div className="home">
       {!account ? (

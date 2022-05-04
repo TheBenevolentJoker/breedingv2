@@ -5,19 +5,10 @@ import { useWallet } from 'use-wallet';
 import { Box, Grid, LinearProgress, Button } from '@material-ui/core';
 import { withStyles, makeStyles } from '@material-ui/styles';
 
-import { createGlobalStyle } from 'styled-components';
-
 //import useBanks from '../../hooks/useBanks';
 import { Context as ContractAPIContext } from '../../contexts/ContractAPIProvider/ContractAPIProvider'; 
 import config from '../../config';
 import { BigNumber } from 'ethers';
-
-const BackgroundImage = createGlobalStyle`
-  body {
-    background-color: #1D2951;
-    background-size: cover !important;
-  }
-`;
 
 const BorderLinearProgress = withStyles((theme) => ({
   root: {
@@ -141,14 +132,6 @@ const Cemetery = () => {
   const claim = async () => {
     await tombFinance.claim([nftsStaked[indexOfSelectedNft].tokenId], 'Land Staking');
     await calculateReward(indexOfSelectedNft);
-  }
-
-  const claim1 = async () => {
-    await tombFinance.landStakingClaim1();
-  }
-
-  const claim2 = async () => {
-    await tombFinance.landStakingClaim2();
   }
 
   const approve = async () => {

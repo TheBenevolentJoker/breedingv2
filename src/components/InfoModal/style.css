@@ -1,0 +1,14 @@
+.info-modal {
+  width: 1200px;
+  height: 800px;
+  padding: 2rem;
+  background: rgba(0, 0, 0, 0.88);
+  position: relative;
+}
+
+.learn-more-btn {
+  position: absolute !important;
+  right: 2rem;
+  bottom: 1rem;
+  color: white !important;
+}

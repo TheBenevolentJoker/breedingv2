@@ -1,11 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react'
 import {Modal} from '@material-ui/core';
-import nftImage from '../../assets/nft.png'
 import breedImage from '../../assets/breed.png'
 import NftInfo from '../NftInfo'
-import './style.css'
 import { Context as ContractAPIContext } from '../../contexts/ContractAPIProvider/ContractAPIProvider';
 import Button from '../Button';
+import InfoModal from '../InfoModal'
+
+import './style.css'
 
 const GenesisNFTModal = ({open, handleClose, item}) => {
   const { contractAPI } = useContext(ContractAPIContext);
@@ -14,6 +15,8 @@ const GenesisNFTModal = ({open, handleClose, item}) => {
   const [blacklisted, setBlacklisted] = useState();
   const [breeding, setBreeding] = useState(false);
   const [breedLimited, setBreedLimited] = useState(false);
+  const [infoOpen, setOpen] = useState(false);
+  const [infoData, setInfoData] = useState({});
 
   const levelUp = async () => {
     await contractAPI.levelUpGenesisNFTItem(item.tokenId, item.tokenType);
@@ -38,6 +41,18 @@ const GenesisNFTModal = ({open, handleClose, item}) => {
   const checkBlacklist = async () => {
     setBlacklisted(await contractAPI.checkBlacklist(item.tokenId, item.tokenType));
     setBreedLimited(await contractAPI.isBreedLimited(item.tokenId, item.tokenType));
+  }
+
+  const openInfoModal = (infoImage, infoUrl) => {
+    setInfoData({
+      infoImage, infoUrl
+    });
+    setOpen(true);
+
+  }
+
+  const handleInfoClose = () => {
+    setOpen(false);
   }
 
   useEffect(() => {
@@ -95,6 +110,7 @@ const GenesisNFTModal = ({open, handleClose, item}) => {
                   hasQuestion
                   btnImg={breedImage}
                   infoUrl="https://miniversefinance.gitbook.io/docs/nft-gamefi-utility/nft-nodes-breeding-game-coming-soon"
+                  openInfoModal={openInfoModal}
                 />
               </Button>
             }
@@ -106,6 +122,7 @@ const GenesisNFTModal = ({open, handleClose, item}) => {
             }
           </section>
         </div>
+        <InfoModal img={infoData.infoImage} url={infoData.infoUrl} open={infoOpen} handleClose={handleInfoClose} />
       </div>
     </Modal>
   )

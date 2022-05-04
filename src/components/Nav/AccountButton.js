@@ -3,11 +3,6 @@ import {Button} from '@material-ui/core';
 import {useWallet} from 'use-wallet';
 import WalletProviderModal from '../WalletProviderModal';
 
-function shorten(str) {
-  if (str.length < 10) return str;
-  return `${str.slice(0, 6)}...${str.slice(str.length - 4)}`;
-}
-
 const AccountButton = ({text}) => {
   const {account} = useWallet();
 

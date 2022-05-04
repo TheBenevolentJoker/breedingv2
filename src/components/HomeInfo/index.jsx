@@ -3,21 +3,6 @@ import { useWallet } from 'use-wallet'
 import { Context as ContractAPIContext } from '../../contexts/ContractAPIProvider/ContractAPIProvider'
 import './style.css'
 
-const INFOS = {
-  MvGLD: '100',
-  MvDOLLAR: '3000',
-  MiniCandy: '13',
-  MiniCoffe: 2,
-  MiniManual: 1,
-}
-
-const FRUITS = {
-  BlueBerry: '1',
-  Grape: '0',
-  Apple: '0',
-  Watermelon: '0',
-}
-
 const HomeInfo = () => {
   const { contractAPI } = useContext(ContractAPIContext);
   const [infos, setInfos] = useState({});
@@ -38,7 +23,7 @@ const HomeInfo = () => {
     if (account && contractAPI) {
       setTimeout(getAccountInfos, 3000);
     }
-  }, [account, contractAPI]);
+  }, [account, contractAPI, getAccountInfos]);
 
   return (
     <div className="homeInfo">

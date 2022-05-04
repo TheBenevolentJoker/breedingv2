@@ -1,6 +1,5 @@
 import React, { useState, useContext } from 'react'
 import './style.css'
-import arrowImg from '../../assets/arrow-1.png'
 import Button from '../Button'
 import GenesisNFTModal from '../GenesisNFTModal'
 import MiniFrenNFTModal from '../MiniFrenNFTModal'
