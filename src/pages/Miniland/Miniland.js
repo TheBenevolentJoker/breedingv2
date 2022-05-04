@@ -266,7 +266,7 @@ const Cemetery = () => {
               </>
             }
             {
-              selectedNftsInWallet.length && <>
+              !!selectedNftsInWallet.length && <>
                 <Box style={{
                   display: 'flex',
                   alignItems: 'center',

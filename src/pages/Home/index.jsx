@@ -7,6 +7,8 @@ import market3Image from '../../assets/market/market3.png'
 import staking1Image from '../../assets/staking/staking1.png'
 import staking2Image from '../../assets/staking/staking2.png'
 import staking3Image from '../../assets/staking/staking3.png'
+import mvDollarEmission from '../../assets/MV_DOLLAR_EMISSIONS.png'
+import miniMarket from '../../assets/MINI_MARKET.png'
 import Button from '../../components/Button'
 import HomeCard from '../../components/HomeCard'
 import HomeInfo from '../../components/HomeInfo'
@@ -97,6 +99,10 @@ const Home = () => {
     setSelectedItemTitle("");
   }
 
+  const gotoMvDollarEmissionInfo = () => {
+
+  }
+
   return (
     <div className="home">
       {!account ? (
@@ -110,6 +116,8 @@ const Home = () => {
               <HomeCard
                 title="Genesis NFT Node Staking"
                 className="stakingContainer"
+                btnImg={mvDollarEmission}
+                infoUrl="https://miniversefinance.gitbook.io/docs/nft-gamefi-utility/nft-nodes-breeding-game-coming-soon/genesis-nft-nodes"
               >
                 {STAKINGS.map(({ title, image }, index) => (
                   <div
@@ -126,7 +134,12 @@ const Home = () => {
                   </div>
                 ))}
               </HomeCard>
-              <HomeCard title="MiniMarket" className="miniMarket">
+              <HomeCard 
+                title="MiniMarket" 
+                className="miniMarket"
+                btnImg={miniMarket}
+                infoUrl="https://miniversefinance.gitbook.io/docs/nft-gamefi-utility/nft-nodes-breeding-game-coming-soon/minimarket"
+              >
                 {MARKETS.map(({ title, image, price }, index) => (
                   <div className="market" key={index}>
                     <div className="image">

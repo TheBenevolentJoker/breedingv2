@@ -2,14 +2,14 @@ import React from 'react'
 import Button from '../Button'
 import './style.css'
 
-const HomeCard = ({ title, className, questionClick, children }) => {
+const HomeCard = ({ title, className, infoUrl, children, btnImg }) => {
   return (
     <div className="homeCard">
       <header>
         <h2>{title}</h2>
-        <Button className="question" onClick={questionClick}>
-          ?
-        </Button>
+        <a href={infoUrl} target="_blank">
+          <img src={btnImg} width="40" height="40"/>
+        </a>
       </header>
       <section className={className}>{children}</section>
     </div>

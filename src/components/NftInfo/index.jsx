@@ -8,6 +8,8 @@ const NftInfo = ({
   miniTitle,
   hasQuestion,
   isBlack,
+  btnImg,
+  infoUrl,
   ...props
 }) => {
   return (
@@ -17,7 +19,17 @@ const NftInfo = ({
         {subTitle && <span>{subTitle}</span>}
         {miniTitle && <span className="miniTitle">{miniTitle}</span>}
       </div>
-      {hasQuestion && <Button className="question">?</Button>}
+      {hasQuestion && 
+        <>
+        {
+          !!btnImg
+          ? <a href={infoUrl} target="_blank">
+              <img src={btnImg} width="40" height="40"/>
+            </a>
+          : <a className="question button" href={infoUrl}>?</a>
+        }
+        </>
+      }
     </div>
   )
 }

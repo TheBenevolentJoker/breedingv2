@@ -2,7 +2,10 @@ import React, { useEffect, useState, useContext } from 'react'
 import {Button, Modal} from '@material-ui/core'
 import { BigNumber } from 'ethers'
 import { useWallet } from 'use-wallet'
-import nftImage from '../../assets/nft.png'
+import breedImage from '../../assets/breed.png'
+import baseLevelUpImage from '../../assets/fren_level_up.png'
+import jobLevelUpImage from '../../assets/job_level_up.png'
+import fruitHeistsImage from '../../assets/fruit_heists.png'
 import NftInfo from '../NftInfo'
 import { Context as ContractAPIContext } from '../../contexts/ContractAPIProvider/ContractAPIProvider';
 
@@ -161,17 +164,35 @@ const MiniFrenNFTModal = ({open, handleClose, item}) => {
             ? (
                 <section>
                   <Button onClick={baseLevelUp}>
-                    <NftInfo title="Level Up" subTitle="Base Level" hasQuestion />
+                    <NftInfo 
+                      title="Level Up" 
+                      subTitle="Base Level" 
+                      hasQuestion
+                      btnImg={baseLevelUpImage}
+                      infoUrl="https://miniversefinance.gitbook.io/docs/nft-gamefi-utility/nft-nodes-breeding-game-coming-soon/minifren-leveling" 
+                    />
                   </Button>
                   <Button onClick={jobLevelUp}>
-                    <NftInfo title="Level Up" subTitle="Job Level" hasQuestion />
+                    <NftInfo 
+                      title="Level Up" 
+                      subTitle="Job Level" 
+                      hasQuestion
+                      btnImg={jobLevelUpImage}
+                      infoUrl="https://miniversefinance.gitbook.io/docs/nft-gamefi-utility/nft-nodes-breeding-game-coming-soon/mvgld-job-leveling" 
+                    />
                   </Button>
                   {
                     getFruitId(heistLevel + 1) !== undefined 
                     && baseLevel >= baseLevelsForHeist[getFruitId(heistLevel + 1)][0] 
                     && !(heistLevel > 0 && fusionClaimed === false) &&
                     <Button onClick={startFusionLevelUp}>
-                      <NftInfo title="Fruit" subTitle="Heist" hasQuestion />
+                      <NftInfo
+                        title="Fruit" 
+                        subTitle="Heist" 
+                        hasQuestion
+                        btnImg={fruitHeistsImage}
+                        infoUrl="https://miniversefinance.gitbook.io/docs/nft-gamefi-utility/nft-nodes-breeding-game-coming-soon/fruit-heists" 
+                      />
                     </Button>
                   }
                   {
@@ -181,6 +202,8 @@ const MiniFrenNFTModal = ({open, handleClose, item}) => {
                           title="Breed"
                           miniTitle="(Needs 1 Other MiniVerse NFT in Wallet)"
                           hasQuestion
+                          btnImg={breedImage}
+                          infoUrl="https://miniversefinance.gitbook.io/docs/nft-gamefi-utility/nft-nodes-breeding-game-coming-soon"
                         />
                       </Button>
                     : <>

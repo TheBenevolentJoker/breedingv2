@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import {Modal} from '@material-ui/core';
 import nftImage from '../../assets/nft.png'
+import breedImage from '../../assets/breed.png'
 import NftInfo from '../NftInfo'
 import './style.css'
 import { Context as ContractAPIContext } from '../../contexts/ContractAPIProvider/ContractAPIProvider';
@@ -78,7 +79,12 @@ const GenesisNFTModal = ({open, handleClose, item}) => {
           </section>
           <section>
             <Button onClick={levelUp}>
-              <NftInfo title="Level Up" subTitle="Genesis Level" hasQuestion />
+              <NftInfo 
+                title="Level Up" 
+                subTitle="Genesis Level" 
+                hasQuestion 
+                infoUrl="https://miniversefinance.gitbook.io/docs/nft-gamefi-utility/nft-nodes-breeding-game-coming-soon/genesis-nft-nodes"
+              />
             </Button>
             {
               item.tokenType !== 'Land' &&
@@ -87,6 +93,8 @@ const GenesisNFTModal = ({open, handleClose, item}) => {
                   title={breeding ? "Breeding..." : breedLimited ? "Breed Limited" : "Breed"}
                   miniTitle="(Needs 1 Other MiniVerse NFT in Wallet)"
                   hasQuestion
+                  btnImg={breedImage}
+                  infoUrl="https://miniversefinance.gitbook.io/docs/nft-gamefi-utility/nft-nodes-breeding-game-coming-soon"
                 />
               </Button>
             }
