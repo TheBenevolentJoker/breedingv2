@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react';
+import { useMediaQuery } from '@material-ui/core';
 import { useWallet } from 'use-wallet';
 
 import { Box, Grid, LinearProgress, Button } from '@material-ui/core';
@@ -7,6 +8,8 @@ import { withStyles, makeStyles } from '@material-ui/styles';
 import { Context as ContractAPIContext } from '../../contexts/ContractAPIProvider/ContractAPIProvider'; 
 import config from '../../config';
 import { BigNumber } from 'ethers';
+
+import './style.css'
 
 const BorderLinearProgress = withStyles((theme) => ({
   root: {
@@ -30,6 +33,10 @@ const useStyles = makeStyles((theme) => ({
     position: 'absolute',
     right: '0',
     color: 'white',
+    [theme.breakpoints.down('md')]: {
+      position: 'unset',
+      marginBottom: '1rem',
+    }
   }
 }));
 
@@ -46,6 +53,8 @@ const Cemetery = () => {
   const [selectedNftsInWallet, setSelectedNftsInWallet] = useState([]);
   const [reward, setReward] = useState(0);
   const [loading, setLoading] = useState(false);
+
+  const isMobile = useMediaQuery('(max-width: 768px)');
 
   const reloadNfts = async () => {
     if (account) {
@@ -141,23 +150,14 @@ const Cemetery = () => {
   }
 
   return (
-    <div
-      style={{
-        textAlign: 'center',
-        color: 'white',
-        backgroundColor: 'rgba(0, 0, 0, 0.88)',
-        width: '1200px',
-        height: '800px',
-        padding: '2rem'
-      }}
-    >
-      <span style={{ fontSize: '96px', display: 'block', marginBottom: '2rem' }}>Minichilla NFT Staking</span>
+    <div className="mini-chilla-container">
+      <span className="mini-chilla-title">Minichilla NFT Staking</span>
       <div style={{ textAlign: 'center', position: 'relative', marginTop: '1rem' }}>
-        <span style={{ fontSize: '36px'}}>
+        <span className="mini-chilla-subtitle">
           { parseInt(nftStakedTotalSupply * 100 / nftTotalSupply) } % Minichilla STAKED
         </span>
         {
-          !!nftsStaked?.length &&
+          !!nftsStaked?.length && !isMobile &&
           <Button onClick={claimAll} disabled={loading}  variant="contained" classes={{ root: classes.claimAllButton }} color="primary">
             Claim All
           </Button>
@@ -165,8 +165,14 @@ const Cemetery = () => {
       </div>
       <BorderLinearProgress variant="determinate" value={nftStakedTotalSupply * 100 / nftTotalSupply} />
       <br/>
+      {
+        !!nftsStaked?.length && isMobile &&
+          <Button onClick={claimAll} disabled={loading}  variant="contained" classes={{ root: classes.claimAllButton }} color="primary">
+            Claim All
+          </Button>
+      }
       <Grid container spacing={2}>
-        <Grid xs={6} item>
+        <Grid md={6} item style={{ width: '100%' }}>
           <Box style={{
             background: 'gray',
             height: '500px',
@@ -177,9 +183,8 @@ const Cemetery = () => {
             <p>
               {nftsInWallet.length} NFT(s) in your wallet
             </p>
-            <Box style={{
-              display: 'flex',
-              flexWrap: 'wrap',
+            <Box classes={{
+              root: 'nft-item-box'
             }}>
               {
                 nftsInWallet.map(({image, name}, index) => 
@@ -203,7 +208,7 @@ const Cemetery = () => {
             </Box>
           </Box>
         </Grid>
-        <Grid xs={6} item>
+        <Grid md={6} sm={12} item style={{ width: '100%' }}>
           <Box style={{
             background: 'gray',
             padding: '1rem',
@@ -216,11 +221,9 @@ const Cemetery = () => {
                 <h1>
                   { nftsStaked[indexOfSelectedNft].name }
                 </h1>
-                <Box style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'space-between'
-                }}>
+                <Box classes={{
+                    root: 'nft-button-box'
+                  }}>
                   <div>
                     <Button
                       variant='contained' 
@@ -246,11 +249,11 @@ const Cemetery = () => {
             }
             {
              selectedNftsInWallet.length > 0 && <>
-                <Box style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'space-between'
-                }}>
+                <Box
+                  classes={{
+                    root: 'nft-button-box'
+                  }} 
+                >
                   <div>
                   <Button
                       variant='contained' 
@@ -288,11 +291,9 @@ const Cemetery = () => {
             <p>
               { nftsStaked.length } NFT(s) staked
             </p>
-            <Box style={{
-              display: 'flex',
-              flexWrap: 'wrap',
-            }}>
-              {
+            <Box classes={{
+              root: 'nft-item-box'
+            }}>              {
                 nftsStaked.map(({image, name}, index) => 
                   <Box style={{
                     marginRight: '1rem',

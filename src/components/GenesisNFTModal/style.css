@@ -8,6 +8,22 @@
   gap: 5.375rem; /*86px */
 }
 
+@media screen and (max-width: 768px){
+  .genesis-nft {
+    width: 90%;
+    height:auto;
+  }
+
+  .genesis-nft .container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .nft-image {
+    width: 100%;
+  }
+}
+
 .genesis-nft h1 {
   text-align: center;
   font-size: 4.5rem; /* 72px */
