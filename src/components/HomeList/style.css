@@ -8,6 +8,27 @@
   text-align: center;
 }
 
+@media screen and (max-width:768px) {
+  .homeList {
+    margin-top: 2rem;
+    min-width: auto;
+  }
+
+  .homeList .title {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .btn-claim-all {
+    position: relative;
+    color: white !important;
+  }
+
+  .large-margin-top {
+    margin-top: 4rem;
+  }
+}
+
 .homeList .title {
   position: relative;
   text-align: center;
@@ -49,8 +70,10 @@
   transform: translate(-50%, 0);
 }
 
-.btn-claim-all {
-  position: absolute !important;
-  right: 0;
-  color: white !important;
+@media screen and (min-width:768px) {
+  .btn-claim-all {
+    position: absolute !important;
+    right: 0;
+    color: white !important;
+  }
 }

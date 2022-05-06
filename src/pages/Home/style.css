@@ -91,3 +91,20 @@
 .btn-white {
   color: white !important;
 }
+
+@media screen and (max-width:768px) {
+  .home .container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .home .container .stakingContainer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .home .container .miniMarket {
+    flex-direction: column;
+  }
+}

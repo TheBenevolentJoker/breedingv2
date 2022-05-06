@@ -44,7 +44,7 @@ const HomeList = ({ title, items, totalSupply }) => {
   }
 
   return (
-    <div className="homeList">
+    <div className={`homeList ${title !== 'Genesis NFT Nodes' ? 'large-margin-top': ''}`}>
       <div className="title">
         {title}
         {

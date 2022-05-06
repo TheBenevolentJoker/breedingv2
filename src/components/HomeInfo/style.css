@@ -14,3 +14,9 @@
   flex-direction: column;
   gap: 2px;
 }
+
+@media screen and (max-width:768px) {
+  .homeInfo {
+    margin: auto;
+  }
+}
