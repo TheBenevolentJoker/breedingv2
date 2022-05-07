@@ -194,11 +194,11 @@ class ContractAPI {
 
   async getAccountInfos(account) {
     return {
-      MvGLD: (await this.contracts['MVGLD'].balanceOf(account)).div(BigNumber.from('1000000000000000000')).toString(),
-      MvDOLLAR: (await this.contracts['Mvdollar'].balanceOf(account)).div(BigNumber.from('1000000000000000000')).toString(),
-      MiniCandy: (await this.contracts['MiniMarket'].balanceOf(account, 0)).toString(),
-      MiniCoffe: (await this.contracts['MiniMarket'].balanceOf(account, 1)).toString(),
-      MiniManual: (await this.contracts['MiniMarket'].balanceOf(account, 2)).toString()
+      MvGLD: (await this.contracts['MVGLD'].balanceOf(account)).div(BigNumber.from('100000000000000')).toNumber() / 10000,
+      MvDOLLAR: (await this.contracts['Mvdollar'].balanceOf(account)).div(BigNumber.from('100000000000000')).toNumber() / 10000,
+      MiniCandy: (await this.contracts['MiniMarket'].balanceOf(account, 0)).toNumber(),
+      MiniCoffe: (await this.contracts['MiniMarket'].balanceOf(account, 1)).toNumber(),
+      MiniManual: (await this.contracts['MiniMarket'].balanceOf(account, 2)).toNumber()
     }
   }
 

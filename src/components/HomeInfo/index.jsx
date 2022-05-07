@@ -23,7 +23,7 @@ const HomeInfo = () => {
     if (account && contractAPI) {
       setTimeout(getAccountInfos, 3000);
     }
-  }, [account, contractAPI, getAccountInfos]);
+  }, [account, contractAPI]);
 
   return (
     <div className="homeInfo">
