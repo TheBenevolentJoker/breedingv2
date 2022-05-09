@@ -16,3 +16,9 @@
   width: 18.75rem; /* 300px */
   padding: 0.875rem; /* 14px */
 }
+
+@media screen and (max-width: 768px){
+  .button.max-content {
+    width: unset !important;
+  }
+}

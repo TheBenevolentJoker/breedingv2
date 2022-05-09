@@ -15,12 +15,19 @@
   }
 
   .genesis-nft .container {
-    display: flex;
+    display: flex !important;
     flex-direction: column;
+    width: 100% !important;
   }
 
   .nft-image {
-    width: 100%;
+    width: 100% !important;
+    height: 100% !important;
+  }
+
+  .genesis-nft h1 {
+    text-align: center !important;
+    font-size: 2rem !important;
   }
 }
 

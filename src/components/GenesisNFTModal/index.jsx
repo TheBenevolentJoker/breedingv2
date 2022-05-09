@@ -84,7 +84,7 @@ const GenesisNFTModal = ({open, handleClose, item}) => {
             <div className="nft-image">
               {
                 image
-                ? <img src={image} alt="nft" width="484" height="484"/>
+                ? <img src={image} alt="nft" width="100%" height="100%"/>
                 : <p> Loading... </p>
               }
             </div>

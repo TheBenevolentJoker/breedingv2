@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react'
-import {Button, Modal} from '@material-ui/core'
+import {Modal} from '@material-ui/core'
+import Button from '../Button';
 import { BigNumber } from 'ethers'
 import { useWallet } from 'use-wallet'
 import breedImage from '../../assets/breed.png'
@@ -163,7 +164,7 @@ const MiniFrenNFTModal = ({open, handleClose, item}) => {
             <div className="nft-image">
               {
                 image
-                ? <img src={image} alt="nft" width="484" height="484"/>
+                ? <img src={image} alt="nft" width="100%" height="100%"/>
                 : <p> Loading... </p>
               }
             </div>

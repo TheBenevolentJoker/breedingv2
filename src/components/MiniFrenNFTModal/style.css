@@ -50,3 +50,27 @@
   font-weight: bold;
   padding: .5rem 1rem;
 }
+
+@media screen and (max-width: 768px){
+  .minifren-nft {
+    width: 90%;
+    max-height: 90vh;
+    overflow: auto;
+  }
+
+  .minifren-nft .container {
+    display: flex !important;
+    flex-direction: column;
+    width: 100% !important;
+  }
+
+  .nft-image {
+    width: 100% !important;
+    height: 100% !important;
+  }
+
+  .minifren-nft h1 {
+    text-align: center !important;
+    font-size: 2rem !important;
+  }
+}
