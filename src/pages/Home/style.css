@@ -108,3 +108,9 @@
     flex-direction: column;
   }
 }
+
+.nft-viewer-btn {
+  color: white !important;
+  padding: 1rem .25rem !important;
+  max-width: 200px;
+}

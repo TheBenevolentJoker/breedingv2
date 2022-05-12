@@ -17,6 +17,7 @@ import UnlockWallet from '../../components/UnlockWallet'
 import MiniChilla from '../Minichilla'
 import MiniGuinea from '../Miniguinea'
 import MiniLand from '../Miniland'
+import NFTViewerModal from '../../components/NFTViewerModal'
 import { Context as ContractAPIContext } from '../../contexts/ContractAPIProvider/ContractAPIProvider';
 import './style.css'
 
@@ -62,6 +63,7 @@ const Home = () => {
   const [selectedItemTitle, setSelectedItemTitle] = useState("");
   const [amount, setAmount] = useState(1);
   const [totalSupply, setTotalSupply] = useState(0);
+  const [showNftViewer, setShowNftViewer] = useState(false);
 
   useEffect(() => {
     (async () => {
@@ -107,6 +109,16 @@ const Home = () => {
         <>
           <span className="connected">Connected</span>
           <HomeInfo />
+          <MuiButton 
+            variant="contained" 
+            color="primary" 
+            onClick={() => {
+              setShowNftViewer(true);
+            }}
+            className="nft-viewer-btn"
+          >
+            Go To NFT Viewer
+          </MuiButton>
           <div className="container">
             <section>
               <HomeCard
@@ -229,6 +241,7 @@ const Home = () => {
           </Button>
         </div>
       </Modal>
+      <NFTViewerModal open={showNftViewer} handleClose={() => { setShowNftViewer(false)}} />
     </div>
   )
 }

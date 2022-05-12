@@ -342,6 +342,32 @@ class ContractAPI {
   async getMiniFrenTotalSupply() {
     return await this.contracts['Breeder'].trueSupply();
   }
+
+  async getNFTInfo(type, id) {
+    let stats = {
+      baseLevel: await this.getBaseLevel(id),
+      breedLimited: await this.isBreedLimited(id, type),
+    };
+
+    if (type === 'Fren') {
+      stats = {
+        ...stats,
+        jobLevel: await this.getJobLevel(id),
+        heistLevel: await this.getHeistLevel(id),
+      }
+    }
+
+    let url;
+    if (type !== 'Fren') {
+      url = await this.contracts[type].tokenURI(id);
+    } else {
+      url = await this.contracts['Breeder'].tokenURI(id);
+    }
+    return {
+      metaData: await (await fetch('https://gateway.pinata.cloud/ipfs/' + url.replace('ipfs://', ''))).json(),
+      stats: stats
+    } 
+  }
 }
 
 export default ContractAPI;
