@@ -84,18 +84,14 @@ const NFTViewrModal = ({open, handleClose}) => {
                 </div>
                 <br />
                 <p>Base Level: { item.stats.baseLevel.toNumber() }</p>
-                <p>Breed Limited: { item.stats.breedLimited.toString() }</p>
+                <p>Breed Count: { item.stats.breedCount.toNumber() }</p>
                 { item.stats.jobLevel && <p> Job Level: { item.stats.jobLevel.toNumber() }</p> }
                 { item.stats.heistLevel && <p> Heist Level: { item.stats.heistLevel.toNumber() }</p> }
               </Grid>
               <Grid item md={1}></Grid>
               <Grid item md={6}>
                 <p>Name: { item.metaData.name }</p>
-                <p>Description: { item.metaData.description }</p>
-                <p>Dna: { item.metaData.dna }</p>
                 <p>Edition: { item.metaData.edition }</p>
-                <p>Date: { new Date(item.metaData.date).toLocaleString() }</p>
-                <p>Compiler: { item.metaData.compiler }</p>
                 <br/>
                 <div> Attributes: 
                   {

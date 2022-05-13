@@ -335,6 +335,22 @@ class ContractAPI {
     return bred.gt(limitCount);
   }
 
+  async breedCount(tokenId, tokenType) {
+    let bred;
+    const contract = this.contracts['Breeder'];
+
+    if (tokenType === 'Fren') {
+      bred = await contract.bred3(tokenId);
+    } else if (tokenType === 'Guinea') {
+      bred = await contract.bred1(tokenId);
+    } else if (tokenType === 'Chilla') {
+      bred = await contract.bred2(tokenId);
+    }
+
+
+    return bred;
+  }
+
   async deedType(tokenId) {
     return await this.contracts['Land'].deedType(tokenId);
   }
@@ -346,7 +362,7 @@ class ContractAPI {
   async getNFTInfo(type, id) {
     let stats = {
       baseLevel: await this.getBaseLevel(id),
-      breedLimited: await this.isBreedLimited(id, type),
+      breedCount: await this.breedCount(id, type),
     };
 
     if (type === 'Fren') {

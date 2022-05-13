@@ -108,9 +108,7 @@ const GenesisNFTModal = ({open, handleClose, item}) => {
                   title={breeding ? "Breeding..." : breedLimited ? "Breed Limited" : "Breed"}
                   miniTitle="(Needs 1 Other MiniVerse NFT in Wallet)"
                   hasQuestion
-                  btnImg={breedImage}
                   infoUrl="https://miniversefinance.gitbook.io/docs/nft-gamefi-utility/nft-nodes-breeding-game-coming-soon"
-                  openInfoModal={openInfoModal}
                 />
               </Button>
             }

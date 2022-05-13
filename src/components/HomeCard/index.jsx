@@ -19,12 +19,9 @@ const HomeCard = ({ title, className, infoUrl, children, btnImg }) => {
     <div className="homeCard">
       <header>
         <h2>{title}</h2>
-        <Button className="question" onClick={questionClick}>
-          ?
-        </Button>
+        <a className="question button" href={infoUrl} target="_blank"  rel="noopener noreferrer">?</a>
       </header>
       <section className={className}>{children}</section>
-      <InfoModal img={btnImg} url={infoUrl} open={open} handleClose={handleClose} />
     </div>
   )
 }

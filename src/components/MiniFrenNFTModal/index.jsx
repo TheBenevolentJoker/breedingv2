@@ -184,9 +184,7 @@ const MiniFrenNFTModal = ({open, handleClose, item}) => {
                       title="Level Up" 
                       subTitle="Base Level" 
                       hasQuestion
-                      btnImg={baseLevelUpImage}
                       infoUrl="https://miniversefinance.gitbook.io/docs/nft-gamefi-utility/nft-nodes-breeding-game-coming-soon/minifren-leveling"
-                      openInfoModal={openInfoModal}
                     />
                   </Button>
                   <Button onClick={jobLevelUp}>
@@ -194,9 +192,7 @@ const MiniFrenNFTModal = ({open, handleClose, item}) => {
                       title="Level Up" 
                       subTitle="Job Level" 
                       hasQuestion
-                      btnImg={jobLevelUpImage}
                       infoUrl="https://miniversefinance.gitbook.io/docs/nft-gamefi-utility/nft-nodes-breeding-game-coming-soon/mvgld-job-leveling" 
-                      openInfoModal={openInfoModal}
                     />
                   </Button>
                   {
@@ -208,9 +204,7 @@ const MiniFrenNFTModal = ({open, handleClose, item}) => {
                         title="Fruit" 
                         subTitle="Heist" 
                         hasQuestion
-                        btnImg={fruitHeistsImage}
                         infoUrl="https://miniversefinance.gitbook.io/docs/nft-gamefi-utility/nft-nodes-breeding-game-coming-soon/fruit-heists" 
-                        openInfoModal={openInfoModal}
                       />
                     </Button>
                   }
@@ -221,9 +215,7 @@ const MiniFrenNFTModal = ({open, handleClose, item}) => {
                           title="Breed"
                           miniTitle="(Needs 1 Other MiniVerse NFT in Wallet)"
                           hasQuestion
-                          btnImg={breedImage}
                           infoUrl="https://miniversefinance.gitbook.io/docs/nft-gamefi-utility/nft-nodes-breeding-game-coming-soon"
-                          openInfoModal={openInfoModal}
                         />
                       </Button>
                     : <>
@@ -263,7 +255,6 @@ const MiniFrenNFTModal = ({open, handleClose, item}) => {
               )
           }
         </div>
-        <InfoModal img={infoData.infoImage} url={infoData.infoUrl} open={infoOpen} handleClose={handleInfoClose} />
       </div>
     </Modal>
   )
