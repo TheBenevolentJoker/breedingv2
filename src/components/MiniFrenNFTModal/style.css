@@ -44,11 +44,16 @@
   height: 484px;
 }
 
+.miniFrens {
+  max-width: 600px;
+}
+
 .miniFren-item {
   background-color: rgba(11, 7, 194, 0.33);
   font-size: 16px;
   font-weight: bold;
   padding: .5rem 1rem;
+  margin: .5rem;
 }
 
 @media screen and (max-width: 768px){

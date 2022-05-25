@@ -83,10 +83,10 @@ const NFTViewrModal = ({open, handleClose}) => {
                   <img src={item.metaData.image.replace('ipfs://', 'https://gateway.pinata.cloud/ipfs/')} alt="nft" width="100%" height="100%"/>
                 </div>
                 <br />
-                <p>Base Level: { item.stats.baseLevel.toNumber() }</p>
-                <p>Breed Count: { item.stats.breedCount.toNumber() }</p>
-                { item.stats.jobLevel && <p> Job Level: { item.stats.jobLevel.toNumber() }</p> }
-                { item.stats.heistLevel && <p> Heist Level: { item.stats.heistLevel.toNumber() }</p> }
+                <p>Base Level: { item.stats.baseLevel?.toNumber() }</p>
+                <p>Breed Count: { item.stats.breedCount?.toNumber() }</p>
+                { item.stats.jobLevel && <p> Job Level: { item.stats.jobLevel?.toNumber() }</p> }
+                { item.stats.heistLevel && <p> Heist Level: { item.stats.heistLevel?.toNumber() }</p> }
               </Grid>
               <Grid item md={1}></Grid>
               <Grid item md={6}>
