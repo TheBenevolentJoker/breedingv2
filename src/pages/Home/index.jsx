@@ -119,6 +119,15 @@ const Home = () => {
           >
             Go To NFT Viewer
           </MuiButton>
+          <MuiButton 
+            variant="contained" 
+            color="primary" 
+            href="https://charming-paletas-5fe91d.netlify.app/"
+            target="_blank"
+            className="nft-viewer-btn"           
+          >
+            Breeding Calculator
+          </MuiButton>
           <div className="container">
             <section>
               <HomeCard
