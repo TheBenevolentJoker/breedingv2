@@ -101,6 +101,12 @@ const Home = () => {
     setSelectedItemTitle("");
   }
 
+  const approveAll = async () => {
+    if (account) {
+      await contractAPI.approveAll(account);
+    }
+  }
+
   return (
     <div className="home">
       {!account ? (
@@ -109,25 +115,38 @@ const Home = () => {
         <>
           <span className="connected">Connected</span>
           <HomeInfo />
-          <MuiButton 
-            variant="contained" 
-            color="primary" 
-            onClick={() => {
-              setShowNftViewer(true);
-            }}
-            className="nft-viewer-btn"
-          >
-            Go To NFT Viewer
-          </MuiButton>
-          <MuiButton 
-            variant="contained" 
-            color="primary" 
-            href="https://charming-paletas-5fe91d.netlify.app/"
-            target="_blank"
-            className="nft-viewer-btn"           
-          >
-            Breeding Calculator
-          </MuiButton>
+          <div>
+            <MuiButton 
+              variant="contained" 
+              color="primary" 
+              onClick={() => {
+                setShowNftViewer(true);
+              }}
+              className="nft-viewer-btn"
+            >
+              Go To NFT Viewer
+            </MuiButton>
+            <MuiButton 
+              variant="contained" 
+              color="primary" 
+              href="https://charming-paletas-5fe91d.netlify.app/"
+              target="_blank"
+              className="nft-viewer-btn"           
+            >
+              Breeding Calculator
+            </MuiButton>
+            {
+              account &&
+                <MuiButton 
+                  variant="contained" 
+                  color="primary" 
+                  onClick={approveAll}
+                  className="nft-viewer-btn"
+                >
+                  Approve All
+                </MuiButton>
+            }
+          </div>
           <div className="container">
             <section>
               <HomeCard
