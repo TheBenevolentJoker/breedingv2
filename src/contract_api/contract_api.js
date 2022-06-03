@@ -197,7 +197,7 @@ class ContractAPI {
       MvGLD: (await this.contracts['MVGLD'].balanceOf(account)).div(BigNumber.from('100000000000000')).toNumber() / 10000,
       MvDOLLAR: (await this.contracts['Mvdollar'].balanceOf(account)).div(BigNumber.from('100000000000000')).toNumber() / 10000,
       MiniCandy: (await this.contracts['MiniMarket'].balanceOf(account, 0)).toNumber(),
-      MiniCoffe: (await this.contracts['MiniMarket'].balanceOf(account, 1)).toNumber(),
+      MiniCoffee: (await this.contracts['MiniMarket'].balanceOf(account, 1)).toNumber(),
       MiniManual: (await this.contracts['MiniMarket'].balanceOf(account, 2)).toNumber()
     }
   }
@@ -216,7 +216,7 @@ class ContractAPI {
 
     if (title === 'MiniCandy') {
       await contract.mintMiniCandy(amount);
-    } else if (title === 'MiniCoffe') {
+    } else if (title === 'MiniCoffee') {
       await contract.mintUnBlacklist(amount);
     } else if (title === 'MiniManual') {
       await contract.mintJobLevelUp(amount);

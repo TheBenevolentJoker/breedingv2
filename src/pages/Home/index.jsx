@@ -43,7 +43,7 @@ const MARKETS = [
     price: '6 mvgld',
   },
   {
-    title: 'MiniCoffe',
+    title: 'MiniCoffee',
     image: market2Image,
     price: '10 mvgld',
   },
