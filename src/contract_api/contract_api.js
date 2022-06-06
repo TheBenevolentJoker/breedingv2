@@ -361,7 +361,7 @@ class ContractAPI {
 
   async getNFTInfo(type, id) {
     let stats = {
-      baseLevel: await this.getBaseLevel(id),
+      baseLevel: type === 'Fren' ? await this.getBaseLevel(id) : await this.getGenesisNFTItemLevel(id, type),
       breedCount: await this.breedCount(id, type),
     };
 
