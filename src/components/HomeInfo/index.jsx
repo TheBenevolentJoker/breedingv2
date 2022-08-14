@@ -15,7 +15,7 @@ const HomeInfo = () => {
       setFruits(await contractAPI.getFruits(account));
       setTimeout(getAccountInfos, 3000);
     } catch(error) {
-      
+
     }
   }
 
@@ -26,23 +26,26 @@ const HomeInfo = () => {
   }, [account, contractAPI]);
 
   return (
-    <div className="homeInfo">
-      <section>
-        {Object.entries(infos).map(([key, value]) => (
-          <span className="info">
-            {key}: {value}
-          </span>
-        ))}
-      </section>
-      <section>
-        <span className="info">Fruit -</span>
-        {Object.entries(fruits).map(([key, value]) => (
-          <span className="info">
-            {key}: {value}
-          </span>
-        ))}
-      </section>
+    <div className="wrapper">
+      <div className="homeInfo">
+        <section>
+          {Object.entries(infos).map(([key, value]) => (
+            <span className="info">
+              {key}: {value}
+            </span>
+          ))}
+        </section>
+        <section>
+          <span className="info">Fruit -</span>
+          {Object.entries(fruits).map(([key, value]) => (
+            <span className="info">
+              {key}: {value}
+            </span>
+          ))}
+        </section>
+      </div>
     </div>
+
   )
 }
 
